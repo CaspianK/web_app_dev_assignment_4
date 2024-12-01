@@ -1,0 +1,31 @@
+services:
+  web:
+    build: ./
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    networks:
+      - my_network
+
+  db:
+    image: postgres:17
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=vJlvHSNV33JDYwQ9WGah
+      - POSTGRES_DB=django
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  my_network:
+    driver: bridge
