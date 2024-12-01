@@ -24,6 +24,7 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 urlpatterns = [
+    path('', include(router_v1.urls)),
     path('v1/', include(router_v1.urls)),
     path('v1/signup/', SignUpViewV1.as_view(), name='signup'),
     path('v1/login/', LoginViewV1.as_view(), name='login'),
